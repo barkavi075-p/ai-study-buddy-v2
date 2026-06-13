@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-client = Groq(api_key="YOUR_API_KEY_HERE")
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 
 @app.route('/')
@@ -62,5 +62,5 @@ Reply ONLY with this JSON, no extra text:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
